@@ -1,4 +1,4 @@
-import os, re, shutil
+import os, re, shutil, sys
 
 CYRILLIC_SYMBOLS = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяєіїґ"
 TRANS = {}
@@ -150,8 +150,14 @@ def delete_empty_folders(path):
 
 def main():
 
-    path = input('Enter your path: ')
+    path = sys.argv[1]
 
+    if os.path.isdir(path) == False:
+        
+        print(f'"{path}" - не является существующиим путем к папке. Попробуйте еще раз!')
+        
+        path = input("Введите корректный путь к папке: ")
+    
     for adress, folder, files in get_list_files(path):
         
         for file in files:
