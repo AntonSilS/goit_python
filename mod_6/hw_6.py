@@ -81,7 +81,9 @@ def sorts_files(adress, file, path):
 
     current_file_path = os.path.join(adress, file)
 
-    file_name, file_exten = file.split ('.')
+    file_name, file_exten = os.path.splitext(file)
+
+    file_exten = file_exten.replace('.', '')
 
     correct_file_name = normilize(file_name)
 
