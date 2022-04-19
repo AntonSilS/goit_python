@@ -1,5 +1,29 @@
 from collections import UserDict
 
+class Field:
+    def __init__(self, value):
+        self.value = value
+        
+    def __str__(self):
+        return self.value
+
+    def __repr__(self):
+        return self.value
+
+
+class Name(Field):
+    pass
+
+        
+class Phone(Field):
+    def __eq__(self, other):
+        return self.value == other.value
+    
+
+class Email(Field):
+    pass
+
+
 class AddressBook(UserDict):
 
     def add_record(self, record):
@@ -12,7 +36,7 @@ class AddressBook(UserDict):
 
 class Record:
     
-    def __init__(self, name, phone = None, email = None):
+    def __init__(self, name: Name, phone: Phone = None, email: Email = None):
         self.name = name
         self.email = email
         self.phones = []
@@ -31,27 +55,7 @@ class Record:
         self.phones.remove(phone)
 
 
-class Field:
-    def __init__(self, value):
-        self.value = value
-        
-    def __str__(self):
-        return self.value
 
-    def __repr__(self):
-        return self.value
-
-
-class Name(Field):
-    pass
-
-        
-class Phone(Field):
-    pass
-
-
-class Email(Field):
-    pass
 
 
 if __name__ == "__main__":
@@ -78,5 +82,8 @@ if __name__ == "__main__":
     print(a['Bob'].phones)
 
     a["Bob"].del_phone(phone_3)
+    print(a['Bob'].phones)
+
+    r.change(Phone('1111'), Phone('5555'))
     print(a['Bob'].phones)
 
